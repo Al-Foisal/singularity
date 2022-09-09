@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Add Main Category')
+@section('title', 'Add outlet')
 
 @section('backend')
     <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add Main Category</h1>
+                    <h1>Add outlet</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Add Category</li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Add outlet</li>
                     </ol>
                 </div>
             </div>
@@ -27,30 +27,34 @@
                     <div class="card card-primary">
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('admin.storeCategory') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('outlets.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ old('name') }}"
-                                        placeholder="Enter category name" name="name">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ old('name') }}" placeholder="Enter outlet name" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ old('phone') }}" placeholder="Enter outlet phone" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Latitude</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ old('latitude') }}" placeholder="Enter outlet latitude" name="latitude">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Longitude</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ old('longitude') }}" placeholder="Enter outlet longitude" name="longitude">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Category Image(80x80)</label>
-                                    <div class="input-group">
+                                    <label for="exampleInputFile">Outlet Image</label>
+                                    <div class="form-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image"
+                                            <input type="file" class="form-control" name="image"
                                                 id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose
-                                                file</label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="category_details">Category Details (Optional)</label>
-                                    <textarea type="text" name="details" class="form-control" id="summernote" rows="10"
-                                        placeholder="Enter category details">{!! old('details') !!}</textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->

@@ -6,7 +6,7 @@
 @endsection
 
 @section('backend')
-    <h1>{{ auth()->guard('admin')->user()->email }}</h1>
+    <h1>{{ auth()->user()->email }}</h1>
 @endsection
 
 @section('jsSource')

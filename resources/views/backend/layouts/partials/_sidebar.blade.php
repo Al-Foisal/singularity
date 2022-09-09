@@ -3,9 +3,6 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                Singularity
-            </div>
             <div class="info">
                 <a href="" class="d-block">{{ auth()->user()->name }}</a>
             </div>
@@ -17,7 +14,7 @@
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -26,14 +23,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('user.index') }}" class="nav-link">
                         <i class="nav-icon far fa-circle text-warning"></i>
-                        <p>Users</p>
+                        <p>User</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('outlets.index') }}" class="nav-link">
                         <i class="nav-icon far fa-circle text-warning"></i>
                         <p>Outlets</p>
                     </a>
