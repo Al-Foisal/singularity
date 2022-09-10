@@ -2,11 +2,12 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
-class Handler extends ExceptionHandler
-{
+class Handler extends ExceptionHandler {
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -41,10 +42,33 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
-    {
+    public function register() {
         $this->reportable(function (Throwable $e) {
             //
         });
     }
+
+    public function render($request, Throwable $e) {
+
+        if ($e instanceof QueryException) {
+            return response([
+                'status' => 'Query error.',
+                'error'  => $e->getMessage(),
+            ], 421);
+        }
+
+        if ($e instanceof ValidationException) {
+            return response([
+                'status' => 'Validation error.',
+                'error'  => $e->errors(),
+            ], 422);
+        }
+
+        // if($e->instanceof Va)
+
+        dd($e);
+
+        parent::render($request, $e);
+    }
+
 }

@@ -35,9 +35,9 @@ class OutletController extends Controller {
             'image'     => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['status' => false, 'message' => 'validation error']);
-        }
+        // if ($validator->fails()) {
+        //     return response()->json(['status' => false, 'message' => 'validation error']);
+        // }
 
         if ($request->hasFile('image')) {
 
@@ -97,9 +97,9 @@ class OutletController extends Controller {
             'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['status' => false, 'message' => 'validation error']);
-        }
+        // if ($validator->fails()) {
+        //     return response()->json(['status' => false, 'message' => 'validation error']);
+        // }
 
         if ($request->hasFile('image')) {
 
