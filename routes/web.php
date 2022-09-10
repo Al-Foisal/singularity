@@ -20,17 +20,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'storeLogin']);
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-Route::controller(UserController::class)->prefix('/users')->as('user.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/edit/{user}', 'edit')->name('edit');
-    Route::put('/update/{user}', 'update')->name('update');
-    Route::delete('/delete/{user}', 'delete')->name('delete');
+    Route::controller(UserController::class)->prefix('/users')->as('user.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{user}', 'edit')->name('edit');
+        Route::put('/update/{user}', 'update')->name('update');
+        Route::delete('/delete/{user}', 'delete')->name('delete');
+    });
+
+    Route::resource('outlets', OutletController::class)->except('show');
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-Route::resource('outlets', OutletController::class)->except('show');
-
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
